@@ -18,6 +18,12 @@ vec4 DrawCircle(vec2 uv, vec3 color, vec2 pos, float radius, float edge) {
     float alpha = smoothstep(radius, radius - edge, dist);
     return vec4(color, alpha);
 }
+vec4 Drawbox(vec2 uv){
+    vec2 box = step(abs(uv), vec2(0.1));
+    float c = box.x * box.y;
+    return vec4(vec3(c), 1.0);
+
+}
 
 // Function to apply feedback using previous buffers
 vec4 ApplyFeedback(vec2 uv, vec4 currentColor) {
@@ -42,12 +48,15 @@ void main()
     
     // Draw circle at mouse position only when clicking
     vec4 circle = vec4(0.0);
+    vec4 currentColor = vec4(0.0);
     if (iMouseClick == 1) {
-        circle = DrawCircle(uv, vec3(0.0, 0.0, 1.0), iMouse.xy, 0.1, 0.01);
+        // = DrawCircle(uv, vec3(0.0, 0.0, 1.0), iMouse.xy, 0.1, 0.01);
+        currentColor = Drawbox(uv);
     }
+    else {vec4 currentColor = mix(vec4(baseColor, 1.0), circle, circle.a);// Current color without feedback
     
-    // Current color without feedback
-    vec4 currentColor = mix(vec4(baseColor, 1.0), circle, circle.a);
+
+    
     
     // Apply feedback using previous buffers
     vec4 finalColor = ApplyFeedback(uv, currentColor);

@@ -14,13 +14,15 @@ void main()
     vec2 mouse = iMouse.xy / iResolution.xy;
     
     // Read previous frame
-    vec3 previous = texture(iChannel0, uv).rgb;
-    
+    //vec3 previous = texture(iChannel0, uv).rgb;
+    float a = 1, b = 0;
+    float Debug = a - (0.1 * (iTime - b));
+    if(Debug < 0){ a = 1; b = iTime;}
     // Start with previous frame (for persistence)
-    vec3 color = previous;
+    vec3 color;// = previous;
     
     // Fade slightly over time (optional)
-    color *= 0.99;
+    //color *= 0.99;
     
     // Add new content when clicking
     if (iMouseClick == 1) {
@@ -28,7 +30,7 @@ void main()
         float circle = 1.0 - smoothstep(0.02, 0.05, dist);
         
         // Bright color that stands out
-        vec3 paintColor = vec3(1.0, 0.5, 0.0); // orange
+        vec3 paintColor = vec3(1.0, Debug, 0.0); // orange
         color = mix(color, paintColor, circle);
     }
     
