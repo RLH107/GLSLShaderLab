@@ -18,11 +18,9 @@ vec4 DrawSquare(vec2 uv, vec2 refrencePoint, vec4 Color)
 }
 // Funcao pega de outro codigo (ela esta pintando a tela toda modificando apenas o alpha)
 // Funcao para desenhar circulo com borda suave
-vec4 DrawCircle(vec2 uv, vec3 color, vec2 pos, float radius, float edge) {
-    vec2 posn = pos / iResolution.xy;
-    float dist = distance(uv, posn);
-    float alpha = smoothstep(radius, radius - edge, dist);
-    return vec4(color, alpha);
+float Circle(vec2 uv, vec2 c, float r) {
+    float d = distance(uv, c);
+    return smoothstep(r * 0.6, r * 0.6, r - d);
 }
 
 void main()
@@ -36,7 +34,7 @@ void main()
         changeClolor = 2f;
     }
     if(changeClolor == 1f){
-        fragColor += DrawCircle(uv, vec3(0.5, 0, 0), vec2(0.5, 0.5),1 , 0.05);
+        fragColor += mix(vec4(0), vec4(1.0, 0, 0, 0), Circle(uv, vec2(0.5, 0.5), 0.4));
         }
     else
     fragColor += DrawSquare(uv, vec2(0.5, 0.5), vec4(1, 0, 0, 1));
