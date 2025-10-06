@@ -10,13 +10,16 @@ uniform float iTime;
 uniform vec2 iResolution;
 uniform vec3 viewPos;
 
+
+
+
 void main()
 {
     // Normalize the normal vector
     vec3 norm = normalize(Normal);
     
     // Simple lighting setup
-    vec3 lightPos = vec3(2.0 * sin(iTime), 4.0, 2.0 * cos(iTime));
+    vec3 lightPos = vec3(2.0 /* * sin(iTime) */, 4.0, 2.0 /* * cos(iTime) */);
     vec3 lightColor = vec3(1.0, 1.0, 1.0);
     
     // Ambient lighting
