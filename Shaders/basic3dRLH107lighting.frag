@@ -15,9 +15,10 @@ vec3 lightDir = normalize(vec3(0.2, 1.0, 0.2));
 float ambient = 0.2; 
 
 void main() {     
-// Cálculo do brilho com o produto escalar entre a normal e a direção da luz,
+// Calculo do brilho com o produto escalar entre a normal e a direcao da luz,
 // limitado entre 0 e 1
-float brightness = clamp(dot(Normal, -lightDir), 0.0, 1.0);
+float brightness = clamp(dot(Normal, -lightDir),0.0, 1.0);
 // Definindo a cor branca com brilho e luz ambiente
-FragColor = vec4(1.0, 1.0, 1.0, 1.0) * (brightness + ambient); 
+FragColor = vec4(1.0, 0.0, 1.0, 1.0) * (brightness + ambient); 
+
 }
