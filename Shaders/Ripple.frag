@@ -21,8 +21,8 @@ void main() {
     vec2 uvN = gl_FragCoord.xy / iResolution.xy;
 
     // fixed center (stable). If you want from mouse: center = iMouse / iResolution;
-    //vec2 center = vec2(0.5, 0.5);
-    vec2 center = (iMouse / iResolution);
+    vec2 center = vec2(0.5, 0.5);
+    //vec2 center = (iMouse / iResolution);
     // IMPORTANT: use inverse scale for zoom-in (expand outward)
     float invScale = 1.0 / SCALE + cos(iTime * 1000.0) * 0.001;
     vec2 scaledUV = center + (uvN - center) * invScale;
