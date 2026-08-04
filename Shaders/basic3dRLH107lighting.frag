@@ -20,7 +20,8 @@ vec4 Flag()
 {
 	vec4 outColor = vec4(0);
     //Cross
-	if(uv.x>-0.075 && uv.x<0.075 && uv.y>-0.19 && uv.y<0.19 || uv.x>-0.19 && uv.x<0.19 && uv.y>-0.075 && uv.y<0.075)
+	if(uv.x>-0.075 && uv.x<0.075 && uv.y>-0.19 && uv.y<0.19 ||
+	uv.x>-0.19 && uv.x<0.19 && uv.y>-0.075 && uv.y<0.075)
     {
         outColor += vec4(1,1,1,1);
     }
